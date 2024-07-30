@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
+
 @RequestMapping("api")
 @RestController
 public class SmallestNumberController {
@@ -18,7 +20,7 @@ public class SmallestNumberController {
         this.smallestNumberService = smallestNumberService;
     }
     @GetMapping(path = "/smallest")
-    public ResponseEntity<Integer> user(@RequestParam(name = "start") Integer start, @RequestParam(name = "end") Integer end) {
+    public ResponseEntity<BigInteger> user(@RequestParam(name = "start") Integer start, @RequestParam(name = "end") Integer end) {
         return new ResponseEntity<>(smallestNumberService.getSmallestNumber(start, end), HttpStatus.OK);
     }
 }

@@ -2,23 +2,31 @@ package nl.west.chris.smallestnumber.service;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+
 @Service
 public class SmallestNumberService {
-    public Integer getSmallestNumber(int startNumber, int endNumber) {
+    public BigInteger getSmallestNumber(int startNumber, int endNumber) {
         return bruteforce(startNumber, endNumber);
     }
 
-    private int bruteforce(int start, int end) {
+    private BigInteger bruteforce(int start, int end) {
         boolean found = false;
-        int currentNumber = end;
+        BigInteger currentNumber = BigInteger.valueOf(end);
+        BigInteger bigStart = BigInteger.valueOf(start);
+        BigInteger bigEnd = BigInteger.valueOf(end);
+
         while (!found) {
             found = true;
-            for (int i = start; i <= end; i++) {
-                if (currentNumber % i != 0) {
+
+            BigInteger divider = bigStart;
+            while (!divider.equals(bigEnd)) {
+                if (!currentNumber.mod(divider).equals(BigInteger.ZERO)) {
                     found = false;
-                    currentNumber++;
+                    currentNumber = currentNumber.add(BigInteger.ONE);
                     break;
                 }
+                divider = divider.add(BigInteger.ONE);
             }
         }
 
