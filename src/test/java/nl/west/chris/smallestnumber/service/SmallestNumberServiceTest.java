@@ -18,6 +18,9 @@ class SmallestNumberServiceTest {
         assertEquals("2520", String.valueOf(smallestNumberService.getSmallestNumber(1, 10)));
         assertEquals("360360", String.valueOf(smallestNumberService.getSmallestNumber(1, 15)));
         assertEquals("26771144400", String.valueOf(smallestNumberService.getSmallestNumber(1, 25)));
+
+        // Edge cases
         assertEquals("26771144400", String.valueOf(smallestNumberService.getSmallestNumber(10, 25)));
+        assertEquals("504", String.valueOf(smallestNumberService.getSmallestNumber(7, 9)));
     }
 }
